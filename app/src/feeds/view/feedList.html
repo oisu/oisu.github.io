@@ -1,0 +1,38 @@
+<md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <ng-md-icon icon="explore" style="fill: white;"></ng-md-icon>
+        <span>&nbsp;News</span>
+    </div>
+</md-toolbar>
+
+<md-content>
+    <md-card ng-repeat="feed in fl.feeds">
+        <md-card-header>
+            <md-card-avatar>
+                <img ng-src="{{feed.site.image}}"/>
+            </md-card-avatar>
+            <md-card-header-text>
+                <span class="md-title">{{feed.site.name}}</span>
+                <span class="md-subhead">{{feed.fromNow}}</span>
+            </md-card-header-text>
+        </md-card-header>
+        <div ng-if="feed.image" layout="row" layout-align="center center">
+            <img ng-src="{{feed.image}}" class="md-card-image" alt="Washed Out">
+        </div>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-title">{{feed.title}}</span>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-content ng-if="feed.contentSnippet">
+            {{feed.contentSnippet}}
+        </md-card-content>
+
+        <md-card-footer layout="row" layout-align="end center">
+            <md-card-actions>
+                <md-button class="md-raised" layout-align="end center">続きを読む</md-button>
+            </md-card-actions>
+        </md-card-footer>
+    </md-card>
+</md-content>

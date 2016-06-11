@@ -1,0 +1,48 @@
+<md-toolbar layout="row" class="md-hue-3">
+    <div class="md-toolbar-tools">
+        <ng-md-icon icon="video_library" style="fill: white;"></ng-md-icon>
+        <span>&nbsp;YouTube</span>
+    </div>
+</md-toolbar>
+
+<md-content>
+
+    <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch
+             ng-repeat="item in items">
+        <md-card-header>
+            <md-card-avatar>
+                <img src="assets/YouTube-social-squircle_red_48px.png">
+            </md-card-avatar>
+            <md-card-header-text>
+                <span class="md-title">YouTube</span>
+                <span class="md-subhead">{{item.fromNow}}</span>
+            </md-card-header-text>
+        </md-card-header>
+
+        <div layout="row" layout-align="center center">
+            <iframe title="YouTube video player"
+                    class="youtube-player"
+                    type="text/html"
+                    width="560"
+                    height="345"
+                    ng-src="{{trustSrcYouTube(item.id.videoId)}}"
+                    frameborder="0">
+            </iframe>
+        </div>
+
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{item.snippet.title}}</span>
+                <p ng-if="item.snippet.description" class="md-subhead" dd-text-collapse dd-text-collapse-max-length="80" dd-text-collapse-text="{{item.snippet.description}}"></p>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-footer layout="row" layout-align="end center">
+            <md-card-actions>
+                <md-button class="md-raised" layout-align="end center">YouTubeを開く</md-button>
+            </md-card-actions>
+        </md-card-footer>
+
+    </md-card>
+
+</md-content>
