@@ -38,6 +38,7 @@
 
             feedService.parseFeed(siteUrl).then(function (res) {
                 var resFeeds = res.data.responseData.feed;
+                var filteredResFeeds = [];
 
                 for (var j = 0; j < resFeeds.entries.length; j++) {
                     var feed = resFeeds.entries[j];
@@ -47,7 +48,12 @@
                     if (site.name == 'チゲ速') {
                         feed.contentSnippet = null;
                     }
-                    $log.debug(feed.contentSnippet);
+
+                    if (site.name == 'Shoryuken') {
+                        if (!feed.content.match(/(street\s?fighter|sf(5|V|Ⅴ))/i)) {
+                            continue;
+                        }
+                    }
 
                     // image
                     if (feed.image) continue;
@@ -60,8 +66,10 @@
                     var momentDate = moment(new Date(feed.publishedDate));
                     feed.fromNow = momentDate.fromNow();
                     feed.unixtime = momentDate.unix();
+
+                    filteredResFeeds.push(feed);
                 }
-                self.feeds = self.feeds.concat(resFeeds.entries).sort(function(a, b) {
+                self.feeds = self.feeds.concat(filteredResFeeds).sort(function(a, b) {
                     return b.unixtime - a.unixtime;
                 });
             });
