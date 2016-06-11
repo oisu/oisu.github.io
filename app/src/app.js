@@ -58,7 +58,7 @@ app.directive('ddTextCollapse', ['$compile', function($compile) {
                     var secondSpan = $compile('<span ng-if="collapsed">' + secondPart + '</span>')(scope);
                     var moreIndicatorSpan = $compile('<span ng-if="!collapsed">... </span>')(scope);
                     var lineBreak = $compile('<br ng-if="collapsed">')(scope);
-                    var toggleButton = $compile('<span class="collapse-text-toggle" ng-click="toggle()" style="color: #3b94d9;">{{collapsed ? "閉じる" : "もっと読む"}}</a></span>')(scope);
+                    var toggleButton = $compile('<span class="collapse-text-toggle" ng-click="toggle()" style="color: #3b94d9;">&nbsp;{{collapsed ? "閉じる" : "もっと読む"}}</a></span>')(scope);
 
                     // remove the current contents of the element
                     // and add the new ones we created

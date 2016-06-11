@@ -21,7 +21,7 @@
             params: {
                 key: 'AIzaSyCsxgoAVqm8av6tXnRanVIlP8wIueVNUUQ',
                 type: 'video',
-                maxResults: '3',
+                maxResults: '12',
                 order: 'date',
                 part: 'id,snippet',
                 q: 'sf5'

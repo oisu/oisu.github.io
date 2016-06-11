@@ -25,7 +25,7 @@
                 fields: 'contentId,title,description,tags,categoryTags,viewCounter,mylistCounter,commentCounter,startTime,thumbnailUrl',
                 _sort: '-startTime',
                 _offset: 0,
-                _limit: 10,
+                _limit: 12,
                 _context: 'sf5checker'
             }
         );
