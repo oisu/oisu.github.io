@@ -39,7 +39,6 @@
                 data.data[i] = item
             }
             $scope.items = $scope.items.concat(data.data);
-            $log.debug($scope.items);
         });
         
         $scope.trustSrcNicoNicoThumb = function (src) {
