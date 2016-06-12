@@ -2,7 +2,7 @@
 
     angular
         .module('videos')
-        .controller('VideoController', ['videoService', '$scope', '$http', '$q', '$log', '$sce',
+        .controller('VideoController', ['videoService', '$scope', '$http', '$mdMedia', '$q', '$log', '$sce',
             VideoController
         ]);
 
@@ -13,7 +13,7 @@
      * @param avatarsService
      * @constructor
      */
-    function VideoController(videoService, $scope, $http, $q, $log, $sce) {
+    function VideoController(videoService, $scope, $http, $mdMedia, $q, $log, $sce) {
         var self = this;
         $scope.items = [];
 
@@ -21,7 +21,7 @@
             params: {
                 key: 'AIzaSyCsxgoAVqm8av6tXnRanVIlP8wIueVNUUQ',
                 type: 'video',
-                maxResults: '12',
+                maxResults: $mdMedia('gt-sm') ? '8' : '3',
                 order: 'date',
                 part: 'id,snippet',
                 q: 'sf5'

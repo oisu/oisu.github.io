@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jak,,,,">
 <head>
     <title>SF5 Checker</title>
 
@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Trade+Winds'>
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="app/assets/app.css"/>
 
@@ -21,11 +22,42 @@
 
 <body ng-app="starterApp" layout="column" ng-controller="MainController as ul" ng-cloak>
 
-<md-toolbar layout="row" class="md-hue-1">
-    <md-button class="menu" ng-click="ul.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-src="app/assets/svg/menu.svg"></md-icon>
-    </md-button>
-    <h1>SF5 Checker</h1>
+<md-toolbar layout="row" class="md-hue-3">
+
+    <md-menu>
+        <md-button aria-label="Open menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+            <md-icon md-menu-origin md-svg-icon="app/assets/svg/menu.svg"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+            <md-menu-item>
+                <md-button ng-click="openLink('http://www.capcom.co.jp/sfv/')">
+                    <md-icon md-svg-icon="app/assets/svg/language.svg" md-menu-align-target></md-icon>
+                    Capcom Official Site
+                </md-button>
+            </md-menu-item>
+
+            <md-menu-divider></md-menu-divider>
+
+            <md-menu-item>
+                <md-button ng-click="openLink('http://goziline.com/tag/%E3%82%B9%E3%83%885')">
+                    <md-icon md-svg-icon="app/assets/svg/language.svg" md-menu-align-target></md-icon>
+                    Goziline
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button ng-click="openLink('https://docs.google.com/spreadsheets/d/1976rt8B91PqVCeYJAmcnW1uwVJ0H03QJtV-dJC5ohL8/htmlview?sle=true')">
+                    <md-icon md-svg-icon="app/assets/svg/language.svg" md-menu-align-target></md-icon>
+                    Frame Data (Google Docs)
+                </md-button>
+            </md-menu-item>
+
+        </md-menu-content>
+    </md-menu>
+
+    <div id="logo-box">
+        <img id="logo" src="app/assets/logo.png">
+        <span id="logo-title"><b>SF5 Checker</b></span>
+    </div>
 </md-toolbar>
 
 <div flex layout="row">
@@ -45,10 +77,18 @@
                 </md-toolbar>
                 <md-content>
                     <md-card>
+                        <span ng-if="isLarge">
                         <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/pktn/lists/sf5-famous"
-                           data-widget-id="739120013462802433" data-chrome="noheader" data-tweet-limit="20">
+                           data-widget-id="739120013462802433" data-chrome="noheader" data-tweet-limit="22">
                             Tweets from https://twitter.com/pktn/lists/sf5-famous
                         </a>
+                        </span>
+                        <span ng-if="!isLarge">
+                        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/pktn/lists/sf5-famous"
+                           data-widget-id="739120013462802433" data-chrome="noheader">
+                            Tweets from https://twitter.com/pktn/lists/sf5-famous
+                        </a>
+                        </span>
                         <script>
                             !function (d, s, id) {
                                 var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
@@ -64,11 +104,6 @@
                 </md-content>
             </div>
         </div>
-
-        <md-button class="share" md-no-ink ng-click="ul.makeContact(ul.selected)"
-                   aria-label="Share with {{ ul.selected.name }}">
-            <md-icon md-svg-icon="share"></md-icon>
-        </md-button>
 
     </md-content>
 
