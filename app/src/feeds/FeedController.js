@@ -2,7 +2,7 @@
 
     angular
         .module('feeds')
-        .controller('FeedController', ['feedService', '$scope', '$http', '$q', '$log',
+        .controller('FeedController', ['feedService', '$scope', '$http', '$mdMedia', '$q', '$log',
             FeedController
         ]);
 
@@ -13,7 +13,7 @@
      * @param avatarsService
      * @constructor
      */
-    function FeedController(feedService, $scope, $http, $q, $log) {
+    function FeedController(feedService, $scope, $http, $mdMedia, $q, $log) {
         var self = this;
 
         self.feeds = [];
@@ -32,6 +32,8 @@
                 'image' : 'https://pbs.twimg.com/profile_images/2937778859/8323e69ec3de0ca8cd74a64d4013034b_400x400.png'
             }
         };
+
+        var sortFunc =
 
         Object.keys(SITES).forEach(function (siteUrl) {
             var site = SITES[siteUrl];
@@ -69,9 +71,11 @@
 
                     filteredResFeeds.push(feed);
                 }
+                var limit = $mdMedia('gt-sm') ? 12 : 5;
+
                 self.feeds = self.feeds.concat(filteredResFeeds).sort(function(a, b) {
                     return b.unixtime - a.unixtime;
-                });
+                }).slice(0, limit);
             });
         });
     }

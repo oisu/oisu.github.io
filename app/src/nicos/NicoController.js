@@ -2,7 +2,7 @@
 
     angular
         .module('nicos')
-        .controller('NicoController', ['nicoService', '$scope', '$http', '$q', '$log', '$sce',
+        .controller('NicoController', ['nicoService', '$scope', '$http', '$mdMedia', '$q', '$log', '$sce',
             NicoController
         ]);
 
@@ -13,7 +13,7 @@
      * @param avatarsService
      * @constructor
      */
-    function NicoController(nicoService, $scope, $http, $q, $log, $sce) {
+    function NicoController(nicoService, $scope, $http, $mdMedia, $q, $log, $sce) {
         var self = this;
         $scope.items = [];
 
@@ -25,7 +25,7 @@
                 fields: 'contentId,title,description,tags,categoryTags,viewCounter,mylistCounter,commentCounter,startTime,thumbnailUrl',
                 _sort: '-startTime',
                 _offset: 0,
-                _limit: 12,
+                _limit: $mdMedia('gt-sm') ? 8 : 3,
                 _context: 'sf5checker'
             }
         );

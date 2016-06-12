@@ -27,14 +27,14 @@
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{item.title}}</span>
-                <p class="md-subhead" dd-text-collapse dd-text-collapse-max-length="80" dd-text-collapse-text="{{item.description}}"></p>
+                <div class="md-subhead" dd-text-collapse dd-text-collapse-max-length="80" dd-text-collapse-text="{{item.description}}"></div>
             </md-card-title-text>
 
         </md-card-title>
 
         <md-card-footer layout="row" layout-align="end center">
             <md-card-actions>
-                <md-button class="md-raised" layout-align="end center">NicoNicoを開く</md-button>
+                <md-button class="md-raised md-primary md-hue-3" layout-align="end center" href="http://nicovideo.jp/watch/{{item.contentId}}" target="_blank">Open</md-button>
             </md-card-actions>
         </md-card-footer>
 

@@ -33,13 +33,13 @@
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">{{item.snippet.title}}</span>
-                <p ng-if="item.snippet.description" class="md-subhead" dd-text-collapse dd-text-collapse-max-length="80" dd-text-collapse-text="{{item.snippet.description}}"></p>
+                <div ng-if="item.snippet.description" class="md-subhead" dd-text-collapse dd-text-collapse-max-length="80" dd-text-collapse-text="{{item.snippet.description}}"></div>
             </md-card-title-text>
         </md-card-title>
 
         <md-card-footer layout="row" layout-align="end center">
             <md-card-actions>
-                <md-button class="md-raised" layout-align="end center">YouTubeを開く</md-button>
+                <md-button class="md-raised md-primary md-hue-3" layout-align="end center" href="https://www.youtube.com/watch?v={{item.id.videoId}}" target="_blank">Open</md-button>
             </md-card-actions>
         </md-card-footer>
 
