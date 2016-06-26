@@ -1,14 +1,22 @@
 <md-toolbar layout="row" class="md-hue-3">
     <div class="md-toolbar-tools">
-        <ng-md-icon icon="video_library" style="fill: white;"></ng-md-icon>
-        <span>&nbsp;YouTube&nbsp;({{items.length}})</span>
+        <div flex="60">
+            <ng-md-icon icon="video_library" style="fill: white;"></ng-md-icon>
+            <span>&nbsp;YouTube&nbsp;({{youtube.length}})</span>
+        </div>
+        <div flex="40">
+            <md-select ng-model="vl.selectedChar" ng-model-options="{trackBy: '$value'}" ng-change="setChar(vl.selectedChar)" md-container-class="charSelectBox">
+                <md-option ng-repeat="char in chars" ng-value="char.name">
+                    {{char.name}}
+                </md-option>
+            </md-select>
+        </div>
     </div>
 </md-toolbar>
 
 <md-content>
-
     <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch
-             ng-repeat="item in items">
+             ng-repeat="item in youtube" md-on-demand>
         <md-card-header>
             <md-card-avatar>
                 <img src="app/assets/YouTube-social-squircle_red_48px.png">
@@ -25,24 +33,35 @@
                     type="text/html"
                     width="560"
                     height="345"
-                    ng-src="{{trustSrcYouTube(item.id.videoId)}}"
+                    ng-src="{{trustSrcYouTube(item.videoId)}}"
                     frameborder="0">
             </iframe>
         </div>
 
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline">{{item.snippet.title}}</span>
-                <div ng-if="item.snippet.description" class="md-subhead" dd-text-collapse dd-text-collapse-max-length="80" dd-text-collapse-text="{{item.snippet.description}}"></div>
+                <span class="md-headline">{{item.title}}</span>
+                <div ng-if="item.description" class="md-subhead" dd-text-collapse dd-text-collapse-max-length="80" dd-text-collapse-text="{{item.description}}"></div>
             </md-card-title-text>
         </md-card-title>
 
         <md-card-footer layout="row" layout-align="end center">
             <md-card-actions>
-                <md-button class="md-raised md-primary md-hue-3" layout-align="end center" href="https://www.youtube.com/watch?v={{item.id.videoId}}" target="_blank">Open</md-button>
+                <md-button class="md-raised md-primary md-hue-3" layout-align="end center" href="https://www.youtube.com/watch?v={{item.videoId}}" target="_blank">Open</md-button>
             </md-card-actions>
         </md-card-footer>
 
+    </md-card>
+
+    <md-card ng-if="!vl.isDesktop && youtube.length > 0 && data.youtube != youtube"
+        md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+        <md-divider>
+            <md-toolbar class="md-theme-light" ng-click="loadMoreYouTube()">
+                <h2 class="md-toolbar-tools">
+                    <span class="load-more">Load More</span>
+                </h2>
+            </md-toolbar>
+        </md-divider>
     </md-card>
 
 </md-content>

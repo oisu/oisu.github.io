@@ -180,3 +180,17 @@ md-menu {
 .menudemoBasicUsage .menu-demo-container {
   min-height: 200px;
 }
+
+.load-more {
+  width: 100%;
+  text-align: center;
+}
+
+md-select-value {
+  color: rgba(255,255,255,0.87) !important;
+  border-bottom-color: rgba(255,255,255,0.87) !important;
+  font-size: 16px;
+}
+md-select {
+  margin: 0;
+}

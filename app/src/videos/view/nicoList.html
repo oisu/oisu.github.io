@@ -1,15 +1,22 @@
 <md-toolbar layout="row" class="md-hue-3">
     <div class="md-toolbar-tools">
-        <ng-md-icon icon="video_label" style="fill: white;"></ng-md-icon>
-        <span>&nbsp;NicoNico&nbsp;({{items.length}})</span>
+        <div flex="60">
+            <ng-md-icon icon="video_label" style="fill: white;"></ng-md-icon>
+            <span>&nbsp;NicoNico&nbsp;({{niconico.length}})</span>
+        </div>
+        <div flex="40">
+            <md-select ng-model="vl.selectedChar" ng-model-options="{trackBy: '$value'}" ng-change="setChar(vl.selectedChar)" md-container-class="charSelectBox">
+                <md-option ng-repeat="char in chars" ng-value="char.name">
+                    {{char.name}}
+                </md-option>
+            </md-select>
+        </div>
     </div>
 </md-toolbar>
 
 <md-content>
-
     <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch
-             ng-repeat="item in items">
-
+             ng-repeat="item in niconico" md-on-demand>
         <md-card-header>
             <md-card-avatar>
                 <img src="https://pbs.twimg.com/profile_images/717986311206862848/v5_KHxON_400x400.jpg">
@@ -38,6 +45,17 @@
             </md-card-actions>
         </md-card-footer>
 
+    </md-card>
+
+    <md-card ng-if="!vl.isDesktop && niconico.length > 0 && data.niconico != niconico"
+        md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
+        <md-divider>
+            <md-toolbar class="md-theme-light" ng-click="loadMoreNiconico()">
+                <h2 class="md-toolbar-tools">
+                    <span class="load-more">Load More</span>
+                </h2>
+            </md-toolbar>
+        </md-divider>
     </md-card>
 
 </md-content>
