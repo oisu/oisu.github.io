@@ -2,7 +2,7 @@
 
     angular
         .module('videos')
-        .controller('VideoController', ['videoService', '$scope', '$http', '$mdMedia', '$q', '$log', '$sce',
+        .controller('VideoController', ['videoService', '$scope', '$http', '$mdMedia', '$q', '$log', '$sce', '$cookies',
             VideoController
         ]);
 
@@ -13,35 +13,52 @@
      * @param avatarsService
      * @constructor
      */
-    function VideoController(videoService, $scope, $http, $mdMedia, $q, $log, $sce) {
+    function VideoController(videoService, $scope, $http, $mdMedia, $q, $log, $sce, $cookies) {
         var self = this;
-        $scope.items = [];
+        var char = $cookies.get('char');
+        var isDesktop = self.isDesktop = $mdMedia('gt-sm');
 
-        $http.get('https://www.googleapis.com/youtube/v3/search', {
-            params: {
-                key: 'AIzaSyCsxgoAVqm8av6tXnRanVIlP8wIueVNUUQ',
-                type: 'video',
-                maxResults: $mdMedia('gt-sm') ? '8' : '3',
-                order: 'date',
-                part: 'id,snippet',
-                q: 'sf5'
-            }
-        }).success(function (data) {
-            for (var i = 0; i < data.items.length; i++) {
-                var momentDate = moment(new Date(data.items[i].snippet.publishedAt));
-                data.items[i].isYouTube = true;
-                data.items[i].fromNow = momentDate.fromNow();
-            }
-            $scope.items = $scope.items.concat(data.items);
+        $scope.chars = ('All Ryu ChunLi Nash Vega Cammy Birdie Ken ' +
+        'Necalli Balrog Mika Rashid Karin Zangief Laura Dhalsim ' +
+        'Fang Alex Guile Ibuki').split(' ').map(function (name) { return { name: name }; });
 
-        }).error(function () {
-            $log.info('Search error');
-        }).finally(function () {
-
-        });
+        self.selectedChar = char ? char : $scope.chars[0].name;
 
         $scope.trustSrcYouTube = function (src) {
             return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + src);
         };
+        $scope.loadMoreYouTube = function () {
+            $scope.youtube = $scope.data.youtube;
+        };
+        $scope.loadMoreNiconico = function () {
+            $scope.niconico = $scope.data.niconico;
+        };
+        $scope.setChar = function (char) {
+            $cookies.put('char', char);
+            self.selectedChar = char;
+            $scope.loadVideo();
+        };
+        $scope.loadVideo = function () {
+          var limit = isDesktop ? 20 : 5;
+          var char = $cookies.get('char');
+          var params = {};
+          if (char) {
+              params.char = char.toLowerCase();
+          }
+          $http.get('https://2dmio2i4g4.execute-api.ap-northeast-1.amazonaws.com/test/sfv-video', {params})
+              .success(function (data) {
+                  if (!data || data.length === 0) {
+                      return;
+                  }
+                  $scope.data = data;
+                  $scope.youtube = data.youtube.slice(0, limit);
+                  $scope.niconico = data.niconico.slice(0, limit);
+
+          }).error(function () {
+              $log.info('Search error');
+          }).finally(function () {
+          });
+        };
+        $scope.loadVideo();
     }
 })();

@@ -1,5 +1,5 @@
 var app = angular
-    .module('starterApp', ['ngMaterial', 'ngMdIcons', 'main', 'feeds', 'videos', 'nicos'])
+    .module('starterApp', ['ngMaterial', 'ngMdIcons', 'ngCookies', 'main', 'feeds', 'videos'])
     .config(function ($mdThemingProvider, $mdIconProvider) {
 
         $mdIconProvider
