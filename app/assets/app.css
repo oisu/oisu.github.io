@@ -1,3 +1,16 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/Lato-Regular.ttf');
+}
+@font-face {
+  font-family: 'Trade Winds';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/TradeWinds-Regular.ttf');
+}
+
 html, body {
   font-family: 'Lato', sans-serif;
   font-size:14px;
@@ -193,4 +206,23 @@ md-select-value {
 }
 md-select {
   margin: 0;
+}
+
+md-menu-item.pageLinkBar {
+  width: auto;
+  font-family: 'Trade Winds', sans-serif;
+  background: rgb(0, 0, 0);
+  color: rgb(250, 250, 250);
+  text-align:left !important;
+}
+
+md-menu-item.pageLinkBar ng-md-icon {
+  margin: auto 16px auto 0;
+  height: 24px;
+  width: 24px;
+}
+
+md-menu-item.pageLinkBar span {
+  margin-top: auto;
+  margin-bottom: auto;
 }

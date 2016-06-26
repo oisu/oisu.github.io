@@ -25,7 +25,7 @@
                 data.forEach(function(elm, index){
                     data[index].summary = $sce.trustAsHtml(elm.summary);
                 });
-                $scope.data.feeds = data;
+                $scope.data = data;
                 $scope.feeds = data.slice(0, limit);
 
         }).error(function () {

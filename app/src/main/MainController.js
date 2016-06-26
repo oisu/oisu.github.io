@@ -3,7 +3,7 @@
     angular
         .module('main')
         .controller('MainController', [
-            'mainService', '$mdSidenav', '$mdBottomSheet', '$mdDialog', '$mdMedia', '$scope', '$timeout', '$log',
+            'mainService', '$mdSidenav', '$mdBottomSheet', '$mdDialog', '$mdMedia', '$scope', '$timeout', '$log', '$location', '$anchorScroll',
             MainController
         ]);
 
@@ -14,7 +14,7 @@
      * @param avatarsService
      * @constructor
      */
-    function MainController(mainService, $mdSidenav, $mdBottomSheet, $mdDialog, $mdMedia, $scope, $timeout, $log) {
+    function MainController(mainService, $mdSidenav, $mdBottomSheet, $mdDialog, $mdMedia, $scope, $timeout, $log, $location, $anchorScroll) {
         var self = this;
 
         self.selected = null;
@@ -92,7 +92,10 @@
         };
         $scope.openLink = function (url) {
             window.open().location.href = url
-
+        };
+        $scope.scrollTo = function(id) {
+          $location.hash(id);
+          $anchorScroll();
         };
     }
 

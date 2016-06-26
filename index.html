@@ -8,8 +8,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
 
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato'>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Trade+Winds'>
     <link rel="stylesheet" href="node_modules/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="app/assets/app.css"/>
 
@@ -29,6 +27,36 @@
             <md-icon md-menu-origin md-svg-icon="app/assets/svg/menu.svg"></md-icon>
         </md-button>
         <md-menu-content width="4">
+            <md-menu-item class="pageLinkBar" ng-if="!isLarge">
+                <md-button ng-click="scrollTo('newsList')">
+                    <ng-md-icon icon="explore" style="fill: white;"></ng-md-icon>
+                    News
+                </md-button>
+            </md-menu-item>
+
+            <md-menu-item class="pageLinkBar" ng-if="!isLarge">
+                <md-button ng-click="scrollTo('youtubeList')">
+                    <ng-md-icon icon="video_library" style="fill: white;"></ng-md-icon>
+                    YouTube
+                </md-button>
+            </md-menu-item>
+
+            <md-menu-item class="pageLinkBar" ng-if="!isLarge">
+                <md-button ng-click="scrollTo('niconicoList')">
+                    <ng-md-icon icon="video_label" style="fill: white;"></ng-md-icon>
+                    NicoNico
+                </md-button>
+            </md-menu-item>
+
+            <md-menu-item class="pageLinkBar" ng-if="!isLarge">
+                <md-button ng-click="scrollTo('twitterList')">
+                    <ng-md-icon icon="twitter" style="fill: white;"></ng-md-icon>
+                    Twitter
+                </md-button>
+            </md-menu-item>
+
+            <md-menu-divider ng-if="!isLarge"></md-menu-divider>
+
             <md-menu-item>
                 <md-button ng-click="openLink('http://www.capcom.co.jp/sfv/')">
                     <md-icon md-svg-icon="app/assets/svg/language.svg" md-menu-align-target></md-icon>
@@ -66,43 +94,45 @@
 
         <div ng-controller="VideoController as vl" ng-cloak layout-gt-sm="row" layout="column">
             <div flex-gt-sm="50" flex>
-                <div ng-controller="FeedController as fl" ng-include="'app/src/feeds/view/feedList.html'"></div>
+                <div id="newsList" ng-controller="FeedController as fl" ng-include="'app/src/feeds/view/feedList.html'"></div>
             </div>
 
             <div flex-gt-sm="50" flex>
-                <div ng-include="'app/src/videos/view/videoList.html'"></div>
+                <div id="videoList" ng-include="'app/src/videos/view/videoList.html'"></div>
             </div>
 
             <div flex-gt-sm="50" flex>
-                <div ng-include="'app/src/videos/view/nicoList.html'"></div>
+                <div id="niconicoList" ng-include="'app/src/videos/view/nicoList.html'"></div>
             </div>
 
             <div flex-gt-sm="50" flex ng-cloak>
-                <md-toolbar layout="row" class="md-hue-3">
-                    <div class="md-toolbar-tools">
-                        <ng-md-icon icon="twitter" style="fill: white;"></ng-md-icon>
-                        <span>&nbsp;Twitter</span>
-                    </div>
-                </md-toolbar>
-                <md-content>
-                    <md-card>
-                        <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/pktn/lists/sf5-famous"
-                           data-widget-id="739120013462802433" data-chrome="noheader" data-tweet-limit="30">
-                            Tweets from https://twitter.com/pktn/lists/sf5-famous
-                        </a>
-                        <script>
-                            !function (d, s, id) {
-                                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-                                if (!d.getElementById(id)) {
-                                    js = d.createElement(s);
-                                    js.id = id;
-                                    js.src = p + "://platform.twitter.com/widgets.js";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                }
-                            }(document, "script", "twitter-wjs");
-                        </script>
-                    </md-card>
-                </md-content>
+                <div id="twitterList">
+                    <md-toolbar layout="row" class="md-hue-3">
+                        <div class="md-toolbar-tools">
+                            <ng-md-icon icon="twitter" style="fill: white;"></ng-md-icon>
+                            <span>&nbsp;Twitter</span>
+                        </div>
+                    </md-toolbar>
+                    <md-content>
+                        <md-card>
+                            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/pktn/lists/sf5-famous"
+                               data-widget-id="739120013462802433" data-chrome="noheader" data-tweet-limit="30">
+                                Tweets from https://twitter.com/pktn/lists/sf5-famous
+                            </a>
+                            <script>
+                                !function (d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                                    if (!d.getElementById(id)) {
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = p + "://platform.twitter.com/widgets.js";
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }
+                                }(document, "script", "twitter-wjs");
+                            </script>
+                        </md-card>
+                    </md-content>
+                </div>
             </div>
         </div>
 
