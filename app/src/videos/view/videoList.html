@@ -1,10 +1,10 @@
 <md-toolbar layout="row" class="md-hue-3">
     <div class="md-toolbar-tools">
-        <div flex="60">
+        <div flex="70">
             <ng-md-icon icon="video_library" style="fill: white;"></ng-md-icon>
-            <span>&nbsp;YouTube&nbsp;({{youtube.length}})</span>
+            <span>&nbsp;YouTube&nbsp;({{youtube.length || 'Loading...'}})</span>
         </div>
-        <div flex="40">
+        <div flex="30">
             <md-select ng-model="vl.selectedChar" ng-model-options="{trackBy: '$value'}" ng-change="setChar(vl.selectedChar)" md-container-class="charSelectBox">
                 <md-option ng-repeat="char in chars" ng-value="char.name">
                     {{char.name}}
@@ -16,7 +16,7 @@
 
 <md-content>
     <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch
-             ng-repeat="item in youtube" md-on-demand>
+             ng-repeat="item in youtube">
         <md-card-header>
             <md-card-avatar>
                 <img src="app/assets/YouTube-social-squircle_red_48px.png">
