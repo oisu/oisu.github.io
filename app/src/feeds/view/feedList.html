@@ -35,6 +35,10 @@
         </md-card-footer>
     </md-card>
 
+    <div ng-if="feeds.length > 0" style="text-align: center;">
+        <iframe src="http://rcm-fe.amazon-adsystem.com/e/cm?t=oisuoisu-22&o=9&p=12&l=ur1&category=tvgame&f=ifr" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;max-width:800px;max-height:600px;" frameborder="0"></iframe>
+    </div>
+
     <md-card ng-if="!vl.isDesktop && feeds.length > 0 && data.feeds != feeds"
       md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
         <md-divider>
