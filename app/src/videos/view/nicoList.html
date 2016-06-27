@@ -4,7 +4,7 @@
             <ng-md-icon icon="video_label" style="fill: white;"></ng-md-icon>
             <span>&nbsp;NicoNico&nbsp;({{niconico.length || 'Loading...'}})</span>
         </div>
-        <div flex="30">
+        <div ng-if="youtube.length > 0" flex="30">
             <md-select ng-model="vl.selectedChar" ng-model-options="{trackBy: '$value'}" ng-change="setChar(vl.selectedChar)" md-container-class="charSelectBox">
                 <md-option ng-repeat="char in chars" ng-value="char.name">
                     {{char.name}}

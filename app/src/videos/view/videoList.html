@@ -4,7 +4,7 @@
             <ng-md-icon icon="video_library" style="fill: white;"></ng-md-icon>
             <span>&nbsp;YouTube&nbsp;({{youtube.length || 'Loading...'}})</span>
         </div>
-        <div flex="30">
+        <div ng-if="youtube.length > 0" flex="30">
             <md-select ng-model="vl.selectedChar" ng-model-options="{trackBy: '$value'}" ng-change="setChar(vl.selectedChar)" md-container-class="charSelectBox">
                 <md-option ng-repeat="char in chars" ng-value="char.name">
                     {{char.name}}
@@ -52,6 +52,18 @@
         </md-card-footer>
 
     </md-card>
+
+    <div ng-if="youtube.length > 0" style="text-align: center;">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- rectangle -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:336px;height:280px"
+             data-ad-client="ca-pub-1576090788403756"
+             data-ad-slot="8228964424"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <md-card ng-if="!vl.isDesktop && youtube.length > 0 && data.youtube != youtube"
         md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>

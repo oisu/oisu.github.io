@@ -94,9 +94,21 @@
             window.open().location.href = url
         };
         $scope.scrollTo = function(id) {
-          $location.hash(id);
-          $anchorScroll();
+            $location.hash(id);
+            $anchorScroll();
+        };
+        $scope.showConfirm = function(ev) {
+            var confirm = $mdDialog.confirm()
+                .title('SFV-Checker v0.9.0')
+                .textContent('ご意見・ご要望・不具合などのご連絡はこちらからおねがいします。')
+                .targetEvent(ev)
+                .ok('お問い合わせ先を開く')
+                .cancel('閉じる');
+
+            $mdDialog.show(confirm).then(function() {
+                window.open().location.href = 'https://twitter.com/pktn'
+            }, function() {
+            });
         };
     }
-
 })();
